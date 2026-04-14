@@ -1,3 +1,18 @@
 <resources>
-    <string name="app_name">androidpedia</string>
+    <string name="app_name">AndroidPedia</string>
+    <string name="welcome_subtitle">¿Cuánto sabes de Android?</string>
+    <string name="btn_start">Comenzar Quiz</string>
+    <string name="student_name">Pamela Alexandra Gómez Tenorio</string>
+    <string name="student_id">Carnet: 00139622</string>
+
+    <string name="progress_label">Pregunta %1$d de %2$d</string>
+    <string name="score_label">Puntaje: %1$d/%2$d</string>
+    <string name="btn_next">Siguiente →</string>
+    <string name="btn_finish">Ver Resultado</string>
+    <string name="label_correct">✅ ¡Correcto!</string>
+    <string name="label_incorrect">❌ Incorrecto</string>
+
+    <string name="quiz_finished">Quiz Finalizado</string>
+    <string name="final_score">Obtuviste %1$d de %2$d</string>
+    <string name="btn_restart">Volver a jugar</string>
 </resources>

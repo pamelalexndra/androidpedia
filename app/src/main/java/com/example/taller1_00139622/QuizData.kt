@@ -1,4 +1,4 @@
-package com.example.androidpedia
+package com.example.taller1_00139622
 
 val quizQuestions = listOf(
     Question(

@@ -1,6 +1,5 @@
-package com.example.androidpedia.ui.theme
+package com.example.taller1_00139622.ui.theme
 
-import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
