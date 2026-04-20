@@ -7,10 +7,10 @@
 
     <string name="progress_label">Pregunta %1$d de %2$d</string>
     <string name="score_label">Puntaje: %1$d/%2$d</string>
-    <string name="btn_next">Siguiente →</string>
+    <string name="btn_next">Siguiente</string>
     <string name="btn_finish">Ver Resultado</string>
-    <string name="label_correct">✅ ¡Correcto!</string>
-    <string name="label_incorrect">❌ Incorrecto</string>
+    <string name="label_correct">¡Correcto!</string>
+    <string name="label_incorrect">¡Casi!</string>
 
     <string name="quiz_finished">Quiz Finalizado</string>
     <string name="final_score">Obtuviste %1$d de %2$d</string>

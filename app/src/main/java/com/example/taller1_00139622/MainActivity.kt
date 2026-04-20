@@ -13,8 +13,8 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
-import com.example.taller1_00139622.R
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
@@ -24,7 +24,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.taller1_00139622.quizQuestions
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,19 +40,21 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun AndroidPediaApp() {
     var currentScreen by remember { mutableStateOf("Welcome") }
-    var score         by remember { mutableIntStateOf(0) }
-    var currentIndex  by remember { mutableIntStateOf(0) }
+    var score         by rememberSaveable { mutableIntStateOf(0) }
+    var currentIndex  by rememberSaveable { mutableIntStateOf(0) }
+    var questions by remember { mutableStateOf(quizQuestions.shuffled()) }
 
     when (currentScreen) {
         "Welcome" -> WelcomeScreen(
             onStart = { currentScreen = "Quiz" }
         )
         "Quiz" -> QuizScreen(
+            questions = questions,
             currentIndex    = currentIndex,
             score           = score,
             onAnswerCorrect = { score++ },
             onNext          = {
-                if (currentIndex < quizQuestions.size - 1) {
+                if (currentIndex < questions.size - 1) {
                     currentIndex++
                 } else {
                     currentScreen = "Result"
@@ -62,10 +63,11 @@ fun AndroidPediaApp() {
         )
         "Result" -> ResultScreen(
             score     = score,
-            total     = quizQuestions.size,
+            total     = questions.size,
             onRestart = {
                 score         = 0
                 currentIndex  = 0
+                questions = quizQuestions.shuffled()
                 currentScreen = "Welcome"
             }
         )
@@ -147,13 +149,14 @@ fun WelcomeScreen(onStart: () -> Unit) {
 
 @Composable
 fun QuizScreen(
+    questions: List<Question>,
     currentIndex    : Int,
     score           : Int,
     onAnswerCorrect : () -> Unit,
     onNext          : () -> Unit
 ) {
-    val question   = quizQuestions[currentIndex]
-    val total      = quizQuestions.size
+    val question   = questions[currentIndex]
+    val total      = questions.size
 
     var selectedOption by remember(currentIndex) { mutableStateOf<String?>(null) }
     var hasAnswered    by remember(currentIndex) { mutableStateOf(false) }
@@ -281,7 +284,7 @@ fun QuizScreen(
                         )
                         Spacer(modifier = Modifier.height(6.dp))
                         Text(
-                            text      = "💡 ${question.funFact}",
+                            text      = question.funFact,
                             fontSize  = 14.sp,
                             fontStyle = FontStyle.Italic,
                             color     = colorResource(id = R.color.text_light),
