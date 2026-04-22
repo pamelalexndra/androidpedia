@@ -1,4 +1,4 @@
-package com.example.taller1_00139622
+package com.example.taller1_00139622.model
 
 data class Question(
     val id: Int,
